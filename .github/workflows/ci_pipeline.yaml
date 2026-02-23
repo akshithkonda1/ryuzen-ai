@@ -71,7 +71,7 @@ jobs:
           docker build -t ghcr.io/${{ github.repository }}/toron-engine:${{ github.sha }} .
 
       - name: Trivy scan
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.34.1
         with:
           image-ref: ghcr.io/${{ github.repository }}/toron-engine:${{ github.sha }}
           format: table
