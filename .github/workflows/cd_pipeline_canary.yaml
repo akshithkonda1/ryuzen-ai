@@ -42,7 +42,7 @@ jobs:
         id: image-ref
         run: echo "image=$(cat /tmp/image-ref.txt)" >> "$GITHUB_OUTPUT"
       - name: Upload image reference
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: image-ref
           path: /tmp/image-ref.txt
