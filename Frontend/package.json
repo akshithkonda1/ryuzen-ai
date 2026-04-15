@@ -19,7 +19,7 @@
     "verify": "npm run lint && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
-    "@tanstack/react-virtual": "^3.13.16",
+    "@tanstack/react-virtual": "^3.13.18",
     "@types/react-syntax-highlighter": "^15.5.13",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
