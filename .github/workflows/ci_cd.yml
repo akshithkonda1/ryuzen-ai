@@ -22,7 +22,7 @@ jobs:
         run: pytest --html=reports/report.html --self-contained-html
 
       - name: Upload test reports
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: pytest-report
           path: |
@@ -36,7 +36,7 @@ jobs:
         run: docker save toron-engine:${{ github.sha }} | gzip > toron-engine.tar.gz
 
       - name: Upload image artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: toron-image
           path: toron-engine.tar.gz

@@ -42,7 +42,7 @@ jobs:
         id: image-ref
         run: echo "image=$(cat /tmp/image-ref.txt)" >> "$GITHUB_OUTPUT"
       - name: Upload image reference
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: image-ref
           path: /tmp/image-ref.txt
@@ -60,7 +60,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install yq
       - name: Configure AWS
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-east-1
@@ -100,7 +100,7 @@ jobs:
       - name: Install tools
         run: sudo apt-get update && sudo apt-get install -y jq bc
       - name: Configure AWS
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-east-1
