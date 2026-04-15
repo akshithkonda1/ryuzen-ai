@@ -55,7 +55,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install yq
       - name: Configure AWS
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-east-1
@@ -94,7 +94,7 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
       - name: Configure AWS
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-east-1
@@ -115,7 +115,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Configure AWS
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-east-1
@@ -135,7 +135,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Configure AWS
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE }}
           aws-region: us-east-1
