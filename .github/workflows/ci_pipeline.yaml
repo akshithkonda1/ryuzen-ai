@@ -41,7 +41,7 @@ jobs:
           pytest --maxfail=1 --disable-warnings --cov=src --cov-report=xml
 
       - name: Upload coverage artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-xml
           path: coverage.xml
@@ -83,7 +83,7 @@ jobs:
           docker save ghcr.io/${{ github.repository }}/toron-engine:${{ github.sha }} -o /tmp/toron-engine.tar
 
       - name: Upload image artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: toron-engine-image
           path: /tmp/toron-engine.tar

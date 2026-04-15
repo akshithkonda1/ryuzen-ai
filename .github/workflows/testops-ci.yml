@@ -53,7 +53,7 @@ jobs:
           pytest backend/tests_master backend/ryuzen/engine/toron_v25hplus.py \
             --cov=backend --cov-report=xml:reports/coverage.xml --maxfail=1
       - name: Upload coverage
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-report
           path: reports/coverage.xml
@@ -90,7 +90,7 @@ jobs:
           print(f"Determinism OK: {determinism}")
           PY
       - name: Upload sim report
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: sim-report
           path: reports/sim_report.html
@@ -125,7 +125,7 @@ jobs:
               json.dump({'scores': scores, 'thresholds': thresholds}, fh, indent=2)
           PY
       - name: Upload hardening scores
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: hardening-scores
           path: reports/hardening_scores.json
@@ -157,7 +157,7 @@ jobs:
               raise SystemExit('Determinism below threshold')
           PY
       - name: Upload chaos and load artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: chaos-load
           path: reports/*load*.json
@@ -182,7 +182,7 @@ jobs:
               json.dump({'status': 'matched', 'baseline': baseline, 'current': current}, fh, indent=2)
           PY
       - name: Upload snapshot compare report
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: snapshot-compare
           path: reports/snapshot_compare.json
@@ -218,7 +218,7 @@ jobs:
           if [ -d reports ]; then cp -r reports artifacts/reports/; fi
           if [ -d logs ]; then cp -r logs artifacts/logs/; fi
       - name: Upload artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: testops-artifacts
           path: artifacts
@@ -235,7 +235,7 @@ jobs:
           mkdir -p reports
           echo "preview-url=http://localhost:4173/preview" > reports/preview.txt
       - name: Upload preview info
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: deploy-preview
           path: reports/preview.txt
