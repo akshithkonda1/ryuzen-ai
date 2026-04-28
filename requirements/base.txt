@@ -19,7 +19,7 @@ httpx>=0.27,<1.0
 brotli>=1.1,<2.0
 # Testing and load stubs
 pytest-mock>=3.12,<4.0
-locust>=2.20,<3.0
+locust>=2.43.4,<3.0
 # For Azure AI Inference SDK usage (optional):
 # azure-ai-inference>=1.0.0
 beautifulsoup4>=4.12,<5.0
