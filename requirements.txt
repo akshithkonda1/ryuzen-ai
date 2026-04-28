@@ -18,7 +18,7 @@ botocore>=1.34.0
 
 # AI Provider SDKs
 anthropic>=0.39.0  # For direct Anthropic API (if not using Bedrock)
-openai>=1.54.0
+openai>=2.32.0
 google-generativeai>=0.8.3
 cohere>=4.40.0  # For direct Cohere API (if not using Bedrock)
 
