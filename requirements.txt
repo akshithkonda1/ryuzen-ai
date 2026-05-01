@@ -10,7 +10,7 @@ python-dotenv>=1.0.0
 
 # Async HTTP
 aiohttp>=3.13.5
-httpx>=0.25.0
+httpx>=0.28.1
 
 # AWS SDK
 boto3>=1.34.0
