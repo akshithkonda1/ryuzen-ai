@@ -45,7 +45,7 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/toron-engine:latest
 
       - name: Set up kubectl
-        uses: azure/setup-kubectl@v4
+        uses: azure/setup-kubectl@v5
         with:
           version: v1.29.2
 
