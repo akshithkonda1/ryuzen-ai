@@ -7,4 +7,4 @@ pytest-cov>=4.1.0
 bandit>=1.7.7
 pip-audit>=2.7.3
 types-requests>=2.31.0.6
-locust>=2.23.1
+locust>=2.43.4
