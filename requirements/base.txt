@@ -14,7 +14,7 @@ uvicorn>=0.46.0,<1.0
 uvloop>=0.19,<1.0
 SQLAlchemy>=2.0,<3.0
 tenacity>=8.2,<10.0
-sentence-transformers>=2.2,<6.0
+sentence-transformers>=5.4.1,<6.0
 httpx>=0.28.1,<1.0
 brotli>=1.2.0,<2.0
 # Testing and load stubs
