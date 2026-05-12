@@ -5,7 +5,7 @@
 # Core Framework
 fastapi>=0.104.0
 uvicorn[standard]>=0.46.0
-pydantic>=2.5.0
+pydantic>=2.13.4
 python-dotenv>=1.0.0
 
 # Async HTTP
