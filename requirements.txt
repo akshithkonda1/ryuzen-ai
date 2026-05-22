@@ -25,7 +25,7 @@ cohere>=4.40.0  # For direct Cohere API (if not using Bedrock)
 # Data Processing
 pandas>=3.0.3
 numpy>=1.24.0
-pyarrow>=14.0.0
+pyarrow>=24.0.0
 
 # Caching
 redis[hiredis]>=5.0.0
