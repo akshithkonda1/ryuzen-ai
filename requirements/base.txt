@@ -23,7 +23,7 @@ locust>=2.43.4,<3.0
 # For Azure AI Inference SDK usage (optional):
 # azure-ai-inference>=1.0.0
 beautifulsoup4>=4.12,<5.0
-bleach>=6.1,<7.0
+bleach>=6.3.0,<7.0
 cryptography>=42.0,<47.0
 python-dotenv>=1.0,<2.0
 gunicorn>=21.2,<26.0
