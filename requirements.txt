@@ -34,5 +34,5 @@ redis[hiredis]>=7.4.0
 cryptography>=41.0.0
 
 # Utilities
-requests>=2.33.1
+requests>=2.34.2
 beautifulsoup4>=4.12.0
