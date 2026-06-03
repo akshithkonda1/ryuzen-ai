@@ -3,11 +3,16 @@ from __future__ import annotations
 
 import json
 import os
+import tempfile
 from dataclasses import dataclass, asdict
 from datetime import datetime
 from typing import Any, Dict, List
 
-HISTORY_PATH = os.environ.get("TORON_WEB_HISTORY", "/tmp/toron_web_history.json")
+# Default to a path under the system temp dir rather than a hardcoded, world-
+# writable /tmp location (avoids symlink/race issues on shared hosts).
+HISTORY_PATH = os.environ.get(
+    "TORON_WEB_HISTORY", os.path.join(tempfile.gettempdir(), "toron_web_history.json")
+)
 
 
 @dataclass

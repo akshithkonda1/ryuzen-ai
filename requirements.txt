@@ -32,6 +32,7 @@ redis[hiredis]>=7.4.0
 
 # Security
 cryptography>=41.0.0
+defusedxml>=0.7.1  # Safe XML parsing (XXE / entity-expansion protection)
 
 # Utilities
 requests>=2.34.2
