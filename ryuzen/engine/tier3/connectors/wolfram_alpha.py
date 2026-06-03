@@ -4,7 +4,8 @@ import logging
 import os
 from typing import List, Optional
 import aiohttp
-import xml.etree.ElementTree as ET
+# defusedxml guards against XXE / entity-expansion in external API responses.
+import defusedxml.ElementTree as ET
 
 from ..base import Tier3Connector, KnowledgeSnippet, SourceCategory
 

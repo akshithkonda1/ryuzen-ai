@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from typing import Any, Dict, List
 
 import boto3
@@ -15,6 +16,24 @@ athena_client = boto3.client("athena")
 
 DATABASE = "ryuzen_telemetry"
 OUTPUT_LOCATION = "s3://ryuzen-telemetry-athena-results/"
+
+# Inputs are interpolated into Athena SQL, so they must be validated against a
+# strict allowlist to prevent SQL injection. Model names are identifiers; month
+# is an ISO year-month.
+_MODEL_NAME_RE = re.compile(r"^[A-Za-z0-9._:\-]{1,128}$")
+_MONTH_RE = re.compile(r"^\d{4}-\d{2}$")
+
+
+def _safe_model_name(model_name: str) -> str:
+    if not _MODEL_NAME_RE.match(model_name or ""):
+        raise ValueError(f"Invalid model_name: {model_name!r}")
+    return model_name
+
+
+def _safe_month(month: str) -> str:
+    if not _MONTH_RE.match(month or ""):
+        raise ValueError(f"Invalid month (expected YYYY-MM): {month!r}")
+    return month
 
 
 def _run_query(query: str) -> List[Dict[str, Any]]:
@@ -33,6 +52,8 @@ def _run_query(query: str) -> List[Dict[str, Any]]:
 
 
 def model_performance_summary(model_name: str, month: str) -> List[Dict[str, Any]]:
+    model_name = _safe_model_name(model_name)
+    month = _safe_month(month)
     query = f"""
         SELECT category, avg(confidence_score) AS avg_confidence, avg(latency_ms) AS avg_latency
         FROM telemetry_events
@@ -44,6 +65,8 @@ def model_performance_summary(model_name: str, month: str) -> List[Dict[str, Any
 
 
 def drift_detection(model_name: str, months_back: int) -> List[Dict[str, Any]]:
+    model_name = _safe_model_name(model_name)
+    months_back = int(months_back)
     query = f"""
         SELECT year, month, approx_distinct(drift_signature) AS drift_signatures
         FROM telemetry_events
@@ -57,6 +80,7 @@ def drift_detection(model_name: str, months_back: int) -> List[Dict[str, Any]]:
 
 
 def disagreement_heatmap(month: str) -> List[Dict[str, Any]]:
+    month = _safe_month(month)
     query = f"""
         SELECT model_name, disagreement_vector
         FROM telemetry_events
@@ -67,6 +91,8 @@ def disagreement_heatmap(month: str) -> List[Dict[str, Any]]:
 
 
 def category_breakdown(model_name: str, month: str) -> List[Dict[str, Any]]:
+    model_name = _safe_model_name(model_name)
+    month = _safe_month(month)
     query = f"""
         SELECT category, count(*) as events
         FROM telemetry_events

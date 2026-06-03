@@ -2,8 +2,26 @@
 
 from __future__ import annotations
 
+import ast
+import operator
 import re
 from typing import Optional
+
+# Whitelisted arithmetic operators for the safe evaluator. Power (**) is
+# intentionally excluded to avoid CPU/memory exhaustion from expressions like
+# 9**9**9.
+_SAFE_BINOPS = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Div: operator.truediv,
+    ast.FloorDiv: operator.floordiv,
+    ast.Mod: operator.mod,
+}
+_SAFE_UNARYOPS = {
+    ast.UAdd: operator.pos,
+    ast.USub: operator.neg,
+}
 
 
 class FastPathExecutor:
@@ -56,8 +74,21 @@ class FastPathExecutor:
         }
 
     def _safe_eval(self, expression: str):
-        tokens = re.findall(r"[-+*/()]|\d+\.?\d*", expression)
-        if not tokens:
-            raise ValueError("invalid expression")
-        expr = "".join(tokens)
-        return eval(expr, {"__builtins__": {}}, {"abs": abs, "round": round})
+        """Evaluate a simple arithmetic expression without using eval().
+
+        Parses the expression into an AST and walks only a whitelist of numeric
+        nodes and operators, so no names, calls, or attribute access can run.
+        """
+        tree = ast.parse(expression, mode="eval")
+        return self._eval_node(tree.body)
+
+    def _eval_node(self, node: ast.AST):
+        if isinstance(node, ast.Constant):
+            if isinstance(node.value, bool) or not isinstance(node.value, (int, float)):
+                raise ValueError("non-numeric constant")
+            return node.value
+        if isinstance(node, ast.BinOp) and type(node.op) in _SAFE_BINOPS:
+            return _SAFE_BINOPS[type(node.op)](self._eval_node(node.left), self._eval_node(node.right))
+        if isinstance(node, ast.UnaryOp) and type(node.op) in _SAFE_UNARYOPS:
+            return _SAFE_UNARYOPS[type(node.op)](self._eval_node(node.operand))
+        raise ValueError("unsupported expression")

@@ -155,7 +155,8 @@ class RyuzenToronV25HPlus:
         }
 
     def _premise_scrubbing_layer(self, prompt: str) -> Dict[str, Any]:
-        cache_key = f"toron:v2.5h+:psl:{hashlib.md5(prompt.encode()).hexdigest()}"
+        # MD5 here is a non-security cache key digest, not a cryptographic hash.
+        cache_key = f"toron:v2.5h+:psl:{hashlib.md5(prompt.encode(), usedforsecurity=False).hexdigest()}"
         cached = self.psl_cache.get(cache_key)
         if cached:
             return cached

@@ -5,8 +5,12 @@ from __future__ import annotations
 
 import base64
 import hashlib
-import xml.etree.ElementTree as ET
 from typing import Dict, Optional
+
+# Use defusedxml to parse attacker-controlled SAML assertions safely. The stdlib
+# ElementTree parser is vulnerable to XXE / entity-expansion (billion laughs)
+# attacks, and SAML assertions arrive from outside the trust boundary.
+import defusedxml.ElementTree as ET
 
 from .idp_metadata_cache import IdPMetadataCache
 
