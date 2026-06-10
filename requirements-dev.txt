@@ -1,10 +1,10 @@
 -r requirements.txt
-black>=26.3.1
+black>=26.5.1
 ruff>=0.6.3
 mypy>=2.1.0
-pytest>=8.2.0
+pytest>=9.0.3
 pytest-cov>=7.1.0
 bandit>=1.9.4
 pip-audit>=2.10.0
-types-requests>=2.31.0.6
+types-requests>=2.33.0.20260518
 locust>=2.44.1
