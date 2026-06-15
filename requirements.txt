@@ -28,7 +28,7 @@ numpy>=2.4.6
 pyarrow>=24.0.0
 
 # Caching
-redis[hiredis]>=7.4.0
+redis[hiredis]>=8.0.0
 
 # Security
 cryptography>=48.0.0
