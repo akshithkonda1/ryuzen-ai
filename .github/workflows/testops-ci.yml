@@ -17,7 +17,7 @@ jobs:
   lint-and-format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
@@ -38,7 +38,7 @@ jobs:
     needs: lint-and-format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
@@ -62,7 +62,7 @@ jobs:
     needs: unit-tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
@@ -99,7 +99,7 @@ jobs:
     needs: sim-suite
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
@@ -134,7 +134,7 @@ jobs:
     needs: hardening-suite
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
@@ -166,7 +166,7 @@ jobs:
     needs: chaos-and-load
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Compare snapshots
         run: |
           mkdir -p reports snapshots
@@ -191,7 +191,7 @@ jobs:
     needs: snapshot-compare
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build backend
         run: |
           echo "Building backend"
@@ -210,7 +210,7 @@ jobs:
     needs: build-testops
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Collect artifacts
         run: |
           mkdir -p artifacts/snapshots artifacts/reports artifacts/logs
@@ -228,7 +228,7 @@ jobs:
     needs: package-artifacts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Deploy preview dashboard
         run: |
           echo "Deploying preview instance with synthetic data"
