@@ -16,7 +16,7 @@ jobs:
     outputs:
       image: ${{ steps.image-ref.outputs.image }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: toron-blue
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Install tooling
         run: |
           sudo apt-get update
@@ -90,7 +90,7 @@ jobs:
     needs: deploy-blue
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
       - name: Configure AWS
@@ -113,7 +113,7 @@ jobs:
     needs: shift-traffic
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v6
         with:
@@ -133,7 +133,7 @@ jobs:
     if: failure()
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v6
         with:
