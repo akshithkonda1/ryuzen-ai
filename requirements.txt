@@ -23,7 +23,7 @@ google-generativeai>=0.8.3
 cohere>=7.0.0  # For direct Cohere API (if not using Bedrock)
 
 # Data Processing
-pandas>=3.0.3
+pandas>=3.0.5
 numpy>=2.4.6
 pyarrow>=24.0.0
 
