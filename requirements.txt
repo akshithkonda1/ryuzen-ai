@@ -20,7 +20,7 @@ botocore>=1.43.6
 anthropic>=0.105.2  # For direct Anthropic API (if not using Bedrock)
 openai>=2.41.0
 google-generativeai>=0.8.3
-cohere>=7.0.0  # For direct Cohere API (if not using Bedrock)
+cohere>=7.0.8  # For direct Cohere API (if not using Bedrock)
 
 # Data Processing
 pandas>=3.0.3
